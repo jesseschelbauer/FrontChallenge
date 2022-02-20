@@ -1,0 +1,8 @@
+<div class="card">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let trend of trends; trackBy:trackBy" class="list-group-item">
+        {{trend.symbol}} {{trend.currentPrice | currency}}
+        <button class="btn btn-link" (click)="order(trend)">COMPRAR</button>
+      </li>
+    </ul>
+  </div>
