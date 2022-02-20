@@ -9,7 +9,6 @@ export class ErrorService {
   constructor(private toastr: ToastrService) { }
 
   handle(e: HttpErrorResponse) {
-    debugger
     this.toastr.error(e.error.message);
   }
 }
