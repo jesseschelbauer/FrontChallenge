@@ -1,0 +1,5 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h3>{{symbol}}</h3>
+    <input id="amount" type="number" formControlName="amount">
+    <button type="submit" [disabled]="!form.valid">Comprar</button>
+</form>
