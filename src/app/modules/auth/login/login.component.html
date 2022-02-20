@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" [(ngModel)]="loginModel.email" class="form-control" id="email">
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-12">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" [(ngModel)]="loginModel.password" class="form-control" id="password">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <button class="btn btn-primary" (click)="login()">Login</button>
+        </div>
+    </div>
+</div>
