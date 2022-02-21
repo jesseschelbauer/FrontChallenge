@@ -9,7 +9,6 @@ import { OrderModel } from '../models';
 })
 export class OrderComponent implements OnInit {
   form: FormGroup;
-  name = new FormControl(0);
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
