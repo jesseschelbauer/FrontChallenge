@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginModel } from '../models';
 
@@ -8,18 +9,30 @@ import { LoginModel } from '../models';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  form: FormGroup;
 
-  loginModel:LoginModel = new LoginModel();
-
-  constructor() { }
-
+  constructor(private formBuilder: FormBuilder) { 
+    this.form = this.createForm();
+  }
+  
   ngOnInit(): void {
   }
 
-  @Output()
-  submit = new EventEmitter<LoginModel>();
+  private createForm() {
+    return this.formBuilder.group({
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required]
+    });
+  }
 
-  login(){
-    this.submit.emit(this.loginModel);
+  @Output()
+  login = new EventEmitter<LoginModel>();
+
+  onSubmit(){
+    this.login.emit(this.form.value);
+  }
+
+  checkError(abstractControl: AbstractControl | null, error:string){
+    return abstractControl?.touched && abstractControl.hasError(error);
   }
 }

@@ -1,19 +1,24 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" [(ngModel)]="loginModel.email" class="form-control" id="email">
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" id="email" type="email" formControlName="email">
+                <div class="text-danger" *ngIf="checkError(form.get('email'), 'email')">Informe um e-mail válido</div>
+                <div class="text-danger" *ngIf="checkError(form.get('email'), 'required')">Campo obrigatório</div>
+            </div>
         </div>
-    </div>
-    <div class="row mb-5">
-        <div class="col-12">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" [(ngModel)]="loginModel.password" class="form-control" id="password">
+        <div class="row mb-5">
+            <div class="col-12">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" id="password" type="password" formControlName="password">
+                <div class="text-danger" *ngIf="checkError(form.get('password'), 'required')">Campo obrigatório</div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 d-flex flex-row-reverse">
-            <button class="btn btn-primary" (click)="login()">Login</button>
+        <div class="row">
+            <div class="col-12 d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Login</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

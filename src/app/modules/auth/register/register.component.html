@@ -1,25 +1,39 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" [(ngModel)]="registerModel.username" class="form-control" id="email">
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" id="email" type="email" formControlName="email">
+                <div class="text-danger" *ngIf="checkError(form.get('email'), 'email')">Informe um e-mail válido</div>
+                <div class="text-danger" *ngIf="checkError(form.get('email'), 'required')">Campo obrigatório</div>
+            </div>
         </div>
-    </div>
-    <div class="row mb-5">
-        <div class="col-12">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" [(ngModel)]="registerModel.password" class="form-control" id="password">
+        <div class="row">
+            <div class="col-12">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" id="password" type="password" formControlName="password">
+                <div class="text-danger" *ngIf="checkError(form.get('password'), 'required')">Campo obrigatório</div>
+                <div class="text-danger" *ngIf="checkError(form.get('password'), 'minLength')">A senha deve conter no mínimo 6 caracteres</div>
+            </div>
         </div>
-    </div>
-    <div class="row mb-5">
-        <div class="col-12">
-            <label for="cpf" class="form-label">CPF</label>
-            <input type="text" [(ngModel)]="registerModel.cpf" class="form-control" id="cpf">
+        <div class="row">
+            <div class="col-12">
+                <label for="cpf" class="form-label">Name</label>
+                <input class="form-control" id="name" type="text" formControlName="name">
+                <div class="text-danger" *ngIf="checkError(form.get('name'), 'required')">Campo obrigatório</div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 d-flex flex-row-reverse">
-            <button class="btn btn-primary" (click)="register()">Login</button>
+        <div class="row">
+            <div class="col-12">
+                <label for="cpf" class="form-label">CPF</label>
+                <input class="form-control" id="cpf" type="text" formControlName="cpf">
+                <div class="text-danger" *ngIf="checkError(form.get('cpf'), 'required')">Campo obrigatório</div>
+            </div>
         </div>
-    </div>
+        <div class="row mt-5">
+            <div class="col-12 d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Register</button>
+            </div>
+        </div>
+    </form>
 </div>
