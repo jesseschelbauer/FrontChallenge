@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: Path.Dashboard, component: DashboardComponent, canLoad: [DashboardGuard], canActivate: [DashboardGuard],
     children: [
       { path: "trends", loadChildren: () => import("./modules/trends/trends.module").then(m => m.TrendsModule) },
-      { path: "order/:symbol", loadChildren: () => import("./modules/order/order.module").then(m => m.OrderModule), outlet: "orderOutlet" }
+      { path: "order/:symbol", loadChildren: () => import("./modules/order/order.module").then(m => m.OrderModule), outlet: "orderOutlet" },
+      { path: "account", loadChildren: () => import("./modules/account/account.module").then(m => m.AccountModule) }
     ]
   }
 ];

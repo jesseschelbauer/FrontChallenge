@@ -9,6 +9,6 @@ export class ErrorService {
   constructor(private toastr: ToastrService) { }
 
   handle(e: HttpErrorResponse) {
-    this.toastr.error(e.error.message);
+    this.toastr.error(e?.error?.message);
   }
 }
