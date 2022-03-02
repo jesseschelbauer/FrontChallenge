@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
 
-  private baseUrl = `http://localhost:21323`
+  private baseUrl = `https://localhost:49319`
 
   constructor(private httpClient: HttpClient) { }
   post<T>(route: string, data: any) {

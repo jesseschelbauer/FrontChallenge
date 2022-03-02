@@ -16,7 +16,7 @@ export class TrendsPageComponent implements OnInit {
   constructor(private trendService: TrendService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.trends$ = this.trendService.topTrends();
+    this.trends$ = this.trendService.topTrends$;
   }
 
   public order(trend: Trend) {
