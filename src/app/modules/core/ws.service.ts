@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
+import { AuthService } from '../auth/auth.service';
 import { TrendService } from '../trends/trend.service';
 
 @Injectable({
@@ -8,13 +9,12 @@ import { TrendService } from '../trends/trend.service';
 export class WsService {
   connection: signalR.HubConnection | undefined;
   
-
-  constructor(private trendService:TrendService) {
+  constructor(private trendService:TrendService, private authService:AuthService) {
     this.create();
   }
 
   public create() {
-    this.connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:49319/ws-trends", { withCredentials: false }).build();
+    this.connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:49319/ws-trends", { withCredentials: false, accessTokenFactory: () => this.token }).build();
     this.connection
   }
 
@@ -28,5 +28,9 @@ export class WsService {
     this.connection?.on("TopTrends", (a) =>{
       this.trendService.update(a);
     });
+  }
+
+  private get token(): string | Promise<string>{
+    return this.authService.isLoggedIn.token ?? "";
   }
 }
